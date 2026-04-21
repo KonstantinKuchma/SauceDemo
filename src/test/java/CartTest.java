@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -18,7 +19,6 @@ d. Проверить (assertEquals) стоимость товара и его �
     @Test
     public void checkCart() {
         ChromeOptions options = new ChromeOptions();
-        SoftAssert softAssert = new SoftAssert();
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("credentials_enable_service", false);
         chromePrefs.put("profile.password_manager_enabled", false);
@@ -36,9 +36,9 @@ d. Проверить (assertEquals) стоимость товара и его �
         driver.findElement(By.cssSelector("#add-to-cart-sauce-labs-backpack")).click();//добавляем в корзину Sauce Labs Backpack
         driver.findElement(By.cssSelector(".shopping_cart_link")).click();//переходим в корзину
         WebElement productName = driver.findElement(By.cssSelector("div.inventory_item_name"));//находим название товара
-        softAssert.assertEquals(productName.getText(), "Sauce Labs Backpack");//сравниваем название товара
+        Assert.assertEquals(productName.getText(), "Sauce Labs Backpack");
+        //softAssert.assertEquals(productName.getText(), "Sauce Labs Backpack");//сравниваем название товара
         //закрывает браузер
         driver.quit();
-        softAssert.assertAll();
     }
 }
