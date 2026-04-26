@@ -39,5 +39,4 @@ public class CartPage extends BasePage {
         List<WebElement> products = driver.findElements(By.cssSelector("[data-test='inventory-item-name']"));
         Assert.assertTrue(products.isEmpty());
     }
-
 }
