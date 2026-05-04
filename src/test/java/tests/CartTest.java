@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.ProductsPage;
+import tests.base.BaseTest;
 
 public class CartTest extends BaseTest {
     /*
@@ -12,7 +13,8 @@ public class CartTest extends BaseTest {
     c. Перейти в корзину
     d. Проверить (assertEquals) стоимость товара и его имя в корзине
      */
-    @Test
+    @Test(description = "Проверка добавления товара в корзину",
+            testName = "Проверка добавления товара в корзину")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу
@@ -26,7 +28,8 @@ public class CartTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(description = "Проверка удаления товара из корзины",
+            testName = "Проверка удаления товара из корзины")
     public void checkRemoveCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу

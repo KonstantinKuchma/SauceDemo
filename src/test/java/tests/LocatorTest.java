@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 public class LocatorTest extends BaseTest {
     /*
@@ -46,7 +47,8 @@ By.xpath("//tag[contains(text(),'text')]");
 - [attribute*=value]
 - Подсказка: https://www.w3schools.com/cssref/css_selectors.asp
     */
-    @Test
+    @Test(description = "Проверка наличия локаторов на странице",
+            testName = "Проверка наличия локаторов на странице")
     public void checkLocator() {
         driver.get("https://www.saucedemo.com/");//открывает страницу по указанному урлу
         driver.findElement(By.id("user-name")).sendKeys("standard_user");//вводим в поле "user-name" standard_user
