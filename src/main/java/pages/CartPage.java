@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.List;
@@ -29,18 +30,27 @@ public class CartPage extends BasePage {
     }
 
     @Step("Открытие страницы с информацией о пользователе")
-    public void goToCheckout() {
+    public CheckoutPage goToCheckout() {
         driver.findElement(CHECKOUT_BUTTON).click();
+        return new CheckoutPage(driver);
+    }
+
+    @Override
+    public CartPage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+        return this;
     }
 
     @Step("Удаление товара из корзины")
-    public void removeFromCart() {
+    public CartPage removeFromCart() {
         driver.findElement(REMOVE_BUTTON).click();
+        return this;
     }
 
     @Step("Проверяем, что корзина пуста")
-    public void checkEmtyCart() {
+    public CartPage checkEmtyCart() {
         List<WebElement> products = driver.findElements(By.cssSelector("[data-test='inventory-item-name']"));
         Assert.assertTrue(products.isEmpty());
+        return this;
     }
 }

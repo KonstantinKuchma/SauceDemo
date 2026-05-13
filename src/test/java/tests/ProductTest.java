@@ -17,10 +17,10 @@ public class ProductTest extends BaseTest {
     @Issue("ITM-5")
     @Owner("Kuchma Konstantin")
     public void checkProductCart() {
-        loginPage.open();//вызываем метод, который открывает страницу
-        loginPage.login("standard_user", "secret_sauce");//авт c лог "standard_user" и пар "secret_sauce"
-        productsPage.clickProducts("Sauce Labs Backpack");
-        productPage.getName();
+        loginPage.open()//вызываем метод, который открывает страницу
+                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .clickProducts("Sauce Labs Backpack")
+                .getName();
         Assert.assertEquals(productPage.getName(), "Sauce Labs Backpack");
     }
 }

@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -33,21 +34,29 @@ public class ProductsPage extends BasePage {
     }
 
     //методы
-    public void openPage() {//открыть ссылку на станицу
+    public ProductsPage openPage() {//открыть ссылку на станицу
         driver.get(BASE_URL + "/inventory.html");
+        return this;
     }
 
     @Step("Открытие страницы 'Корзина'")
-    public void openCart() {//открыть корзину
+    public CartPage openCart() {//открыть корзину
         driver.findElement(CART).click();
+        return new CartPage(driver);
     }
 
     public String getTitle() {
         return driver.findElement(TITLE).getText();//вытаскиваем уникальное значение со страницы
     }
 
+    @Override
+    public ProductsPage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
+    }
+
     @Step("Открытие страницы товара")
-    public void clickProducts(String text) {
+    public ProductPage clickProducts(String text) {
         List<WebElement> products = driver.findElements(By.cssSelector("[data-test='inventory-item-name']"));
         WebElement neededProduct = null;
 
@@ -58,10 +67,12 @@ public class ProductsPage extends BasePage {
             }
         }
         neededProduct.click();
+        return new ProductPage(driver);
     }
 
     @Step("Добавление товара с именем '{product}' в корзину")
-    public void addToCart(String product) {//добавить товар в корзину по названию
+    public ProductsPage addToCart(String product) {//добавить товар в корзину по названию
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        return this;
     }
 }
