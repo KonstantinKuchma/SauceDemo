@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.ProductsPage;
 import tests.base.BaseTest;
 
 public class CartTest extends BaseTest {
@@ -27,7 +26,8 @@ public class CartTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу
         loginPage.login("standard_user", "secret_sauce");//авт c лог "standard_user" и пар "secret_sauce"
-        productsPage.addToCart(ProductsPage.ADDTOCART_SAUCELABSBACKPACK);//добавить элемент в корзину
+        //productsPage.addToCart(ProductsPage.SAUCELABSBACKPACK);//добавить элемент в корзину
+        productsPage.addToCart("Sauce Labs Backpack");
         productsPage.openCart();//открыть корзину
         cartPage.getProductName();//получаем и проверяем имя первого товара в корзине
         softAssert.assertEquals(cartPage.getProductName(), "Sauce Labs Backpack");
@@ -49,7 +49,7 @@ public class CartTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу
         loginPage.login("standard_user", "secret_sauce");//авт c лог "standard_user" и пар "secret_sauce"
-        productsPage.addToCart(ProductsPage.ADDTOCART_SAUCELABSBACKPACK);//добавить элемент в корзину
+        productsPage.addToCart("Sauce Labs Backpack");
         productsPage.openCart();//открыть корзину
         cartPage.getProductName();//получаем и проверяем имя первого товара в корзине
         Assert.assertEquals(cartPage.getProductName(), "Sauce Labs Backpack");

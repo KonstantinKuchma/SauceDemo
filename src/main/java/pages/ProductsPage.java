@@ -8,27 +8,23 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ProductsPage extends BasePage {
+    public static final By SORT_AZ =
+            By.xpath("//select[@class='product_sort_container']/option[@value='az']");
+    public static final By SORT_ZA =
+            By.xpath("//select[@class='product_sort_container']/option[@value='za']");
+    public static final By SORT_LOHI =
+            By.xpath("//select[@class='product_sort_container']/option[@value='lohi']");
+    public static final By SORT_HILO =
+            By.xpath("//select[@class='product_sort_container']/option[@value='hilo']");
     /*
             1. Описываем в классе элементы с которыми мы взаимодействуем
             2. Описываем методы взаимодействия с этими элементами
             */
     //элементы страницы
-    public static final By ADDTOCART_SAUCELABSBACKPACK = By.cssSelector("#add-to-cart-sauce-labs-backpack");
-    public static final By ADDTOCART_SAUCELABSBBIKELIGHT = By.cssSelector("#add-to-cart-sauce-labs-bike-light");
-    public static final By ADDTOCART_SAUCELABSBOLTTSHIRT = By.cssSelector("#add-to-cart-sauce-labs-bolt-t-shirt");
-    public static final By ADDTOCART_SAUCELABSFLEECEJACKET = By.cssSelector("#add-to-cart-sauce-labs-fleece-jacket");
-    public static final By ADDTOCART_SAUCELABSONESIE = By.cssSelector("#add-to-cart-sauce-labs-onesie");
-    public static final By ADDTOCART_TESTALLTHETHINGS = By.cssSelector("#add-to-cart-test.allthethings()-t-shirt-(red)");
-    public static final By REMOVE_SAUCELABSBACKPACK = By.cssSelector("#remove-sauce-labs-backpack");
-    public static final By REMOVE_SAUCELABSBBIKELIGHT = By.cssSelector("#remove-sauce-labs-bike-light");
-    public static final By REMOVE_SAUCELABSBOLTTSHIRT = By.cssSelector("#remove-sauce-labs-bolt-t-shirt");
-    public static final By REMOVE_SAUCELABSFLEECEJACKET = By.cssSelector("#remove-sauce-labs-fleece-jacket");
-    public static final By REMOVE_SAUCELABSONESIE = By.cssSelector("#remove-sauce-labs-onesie");
-    public static final By REMOVE_TESTALLTHETHINGS = By.cssSelector("#remove-test.allthethings()-t-shirt-(red)");
-    public static final By SORT_AZ = By.xpath("//select[@class='product_sort_container']/option[@value='az']");
-    public static final By SORT_ZA = By.xpath("//select[@class='product_sort_container']/option[@value='za']");
-    public static final By SORT_LOHI = By.xpath("//select[@class='product_sort_container']/option[@value='lohi']");
-    public static final By SORT_HILO = By.xpath("//select[@class='product_sort_container']/option[@value='hilo']");
+    private final String ADD_TO_CART_PATTERN =
+            "//*[text()='%s']/ancestor::div[@class='inventory_item']//button[text()='Add to cart']";
+    private final String REMOVE_FROM_CART_PATTERN =
+            "//*[text()='%s']/ancestor::div[@class='inventory_item']//button[text()='Remove']";
     private final By TITLE = By.cssSelector("[data-test=title]");
     private final By CART = By.cssSelector(".shopping_cart_link");
 
@@ -39,11 +35,6 @@ public class ProductsPage extends BasePage {
     //методы
     public void openPage() {//открыть ссылку на станицу
         driver.get(BASE_URL + "/inventory.html");
-    }
-
-    @Step("Добавление товара с именем '{product}' в корзину")
-    public void addToCart(By locator) {//добавить товар в корзину по локатору
-        driver.findElement(locator).click();
     }
 
     @Step("Открытие страницы 'Корзина'")
@@ -67,5 +58,10 @@ public class ProductsPage extends BasePage {
             }
         }
         neededProduct.click();
+    }
+
+    @Step("Добавление товара с именем '{product}' в корзину")
+    public void addToCart(String product) {//добавить товар в корзину по названию
+        driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
     }
 }
