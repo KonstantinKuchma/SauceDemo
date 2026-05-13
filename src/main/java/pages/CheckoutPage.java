@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -21,6 +22,7 @@ public class CheckoutPage extends BasePage {
         return driver.findElement(TITLE1).getText();//вытаскиваем уникальное значение со страницы
     }
 
+    @Step("Сохранение личных данных - имя: '{firstName}', фамилия: '{lastName}' и код: '{zip}'")
     public void checkout(String firstName, String lastName, String zip) {//заполнение полей без хардкода
         driver.findElement(FIRSTNAME_FIELD).sendKeys(firstName);
         driver.findElement(LASTNAME_FIELD).sendKeys(lastName);

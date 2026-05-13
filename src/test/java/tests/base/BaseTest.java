@@ -1,19 +1,22 @@
 package tests.base;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 import utils.TestListener;
 
 import java.util.HashMap;
 
-@Listeners(TestListener.class)
+@Listeners({AllureTestNg.class, TestListener.class})
 public class BaseTest {
 
-    WebDriver driver;//объявили драйвер что бы использовать в наследуемых классах
+    protected WebDriver driver;//объявили драйвер что бы использовать в наследуемых классах
     protected LoginPage loginPage;
     protected ProductsPage productsPage;//объявили страницу productsPage
     protected CartPage cartPage;//объявили страницу cartPage
@@ -21,8 +24,9 @@ public class BaseTest {
     protected ProductPage productPage;
 
     @Parameters({"browser"})
-    @BeforeMethod (alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser) {
+    @BeforeMethod (alwaysRun = true, description = "Настройка браузера")
+    @Description("Настройка браузера")
+    public void setUp(@Optional("chrome") String browser, ITestContext iTestContext) {
         if (browser.equalsIgnoreCase("chrome")) {
             //задаем все настройки браузера
             ChromeOptions options = new ChromeOptions();
@@ -44,9 +48,13 @@ public class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
         productPage = new ProductPage(driver);
+
+        iTestContext.setAttribute("driver", driver);//для скриншота при падении
+
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
+    @Description("Закрытие браузера")
     //добавили (alwaysRun = true) что бы метод срабатвывал независимо от результата тестов
     public void tearDown() {
         driver.quit();

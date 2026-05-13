@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -49,6 +50,13 @@ By.xpath("//tag[contains(text(),'text')]");
     */
     @Test(description = "Проверка наличия локаторов на странице",
             testName = "Проверка наличия локаторов на странице")
+    @Description("Проверка наличия локаторов на странице")
+    @Epic("E2E")
+    @Feature("Check Locator")
+    @Story("Locator")
+    @TmsLink("ITM-5")
+    @Issue("ITM-5")
+    @Owner("Kuchma Konstantin")
     public void checkLocator() {
         driver.get("https://www.saucedemo.com/");//открывает страницу по указанному урлу
         driver.findElement(By.id("user-name")).sendKeys("standard_user");//вводим в поле "user-name" standard_user

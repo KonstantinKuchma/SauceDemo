@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,14 +28,17 @@ public class CartPage extends BasePage {
         return driver.findElement(PRODUCT_PRICE).getText();
     }
 
+    @Step("Открытие страницы с информацией о пользователе")
     public void goToCheckout() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
+    @Step("Удаление товара из корзины")
     public void removeFromCart() {
         driver.findElement(REMOVE_BUTTON).click();
     }
 
+    @Step("Проверяем, что корзина пуста")
     public void checkEmtyCart() {
         List<WebElement> products = driver.findElements(By.cssSelector("[data-test='inventory-item-name']"));
         Assert.assertTrue(products.isEmpty());

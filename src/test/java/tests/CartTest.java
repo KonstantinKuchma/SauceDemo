@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,6 +16,13 @@ public class CartTest extends BaseTest {
      */
     @Test(description = "Проверка добавления товара в корзину",
             testName = "Проверка добавления товара в корзину")
+    @Description("Проверка добавления товара в корзину")
+    @Epic("E2E")
+    @Feature("Check Cart")
+    @Story("Cart")
+    @TmsLink("ITM-5")
+    @Issue("ITM-5")
+    @Owner("Kuchma Konstantin")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу
@@ -30,6 +38,13 @@ public class CartTest extends BaseTest {
 
     @Test(description = "Проверка удаления товара из корзины",
             testName = "Проверка удаления товара из корзины")
+    @Description("Проверка удаления товара из корзины")
+    @Epic("E2E")
+    @Feature("Check Cart")
+    @Story("Cart")
+    @TmsLink("ITM-5")
+    @Issue("ITM-5")
+    @Owner("Kuchma Konstantin")
     public void checkRemoveCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу

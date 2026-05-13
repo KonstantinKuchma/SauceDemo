@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -9,6 +10,13 @@ public class CheckoutTest extends BaseTest {
 
     @Test(description = "Проверка сохранения корректных данных о пользователе",
             testName = "Проверка сохранения корректных данных о пользователе")
+    @Description("Проверка сохранения корректных данных о пользователе")
+    @Epic("E2E")
+    @Feature("Checkout With Positive Cred")
+    @Story("Cred")
+    @TmsLink("ITM-5")
+    @Issue("ITM-5")
+    @Owner("Kuchma Konstantin")
     public void checkoutWithPositiveCred() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();//вызываем метод, который открывает страницу
@@ -35,6 +43,13 @@ public Object[][] checkoutData() {
 @Test(description = "Проверка ошибки сохранения некорректных данных о пользователе",
         testName = "Проверка ошибки сохранения некорректных данных о пользователе",
         dataProvider = "Тестовые данные для негативного чекаута")
+@Description("Проверка ошибки сохранения некорректных данных о пользователе")
+@Epic("E2E")
+@Feature("Checkout With Negative Cred")
+@Story("Cred")
+@TmsLink("ITM-5")
+@Issue("ITM-5")
+@Owner("Kuchma Konstantin")
 public void negativeCheckout(String firstname, String lastname, String postal, String errorMessage) {
     SoftAssert softAssert = new SoftAssert();
     loginPage.open();//вызываем метод, который открывает страницу
