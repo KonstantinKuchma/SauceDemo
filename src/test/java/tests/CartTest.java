@@ -24,12 +24,11 @@ public class CartTest extends BaseTest {
     @Owner("Kuchma Konstantin")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
-        loginPage.open();//вызываем метод, который открывает страницу
-        loginPage.login("standard_user", "secret_sauce");//авт c лог "standard_user" и пар "secret_sauce"
-        //productsPage.addToCart(ProductsPage.SAUCELABSBACKPACK);//добавить элемент в корзину
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.openCart();//открыть корзину
-        cartPage.getProductName();//получаем и проверяем имя первого товара в корзине
+        loginPage.open()//вызываем метод, который открывает страницу
+                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .addToCart("Sauce Labs Backpack")
+                .openCart()//открыть корзину
+                .getProductName();//получаем и проверяем имя первого товара в корзине
         softAssert.assertEquals(cartPage.getProductName(), "Sauce Labs Backpack");
         cartPage.getProductPrice();//получаем и проверяем цену первого товара в корзине
         softAssert.assertEquals(cartPage.getProductPrice(), "$29.99");
@@ -47,13 +46,13 @@ public class CartTest extends BaseTest {
     @Owner("Kuchma Konstantin")
     public void checkRemoveCart() {
         SoftAssert softAssert = new SoftAssert();
-        loginPage.open();//вызываем метод, который открывает страницу
-        loginPage.login("standard_user", "secret_sauce");//авт c лог "standard_user" и пар "secret_sauce"
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.openCart();//открыть корзину
-        cartPage.getProductName();//получаем и проверяем имя первого товара в корзине
+        loginPage.open()//вызываем метод, который открывает страницу
+                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .addToCart("Sauce Labs Backpack")
+                .openCart()//открыть корзину
+                .getProductName();//получаем и проверяем имя первого товара в корзине
         Assert.assertEquals(cartPage.getProductName(), "Sauce Labs Backpack");
-        cartPage.removeFromCart();//удаляем товар
-        cartPage.checkEmtyCart();
+        cartPage.removeFromCart()//удаляем товар
+                .checkEmtyCart();
     }
 }

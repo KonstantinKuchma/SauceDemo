@@ -24,7 +24,7 @@ public class BaseTest {
     protected ProductPage productPage;
 
     @Parameters({"browser"})
-    @BeforeMethod (alwaysRun = true, description = "Настройка браузера")
+    @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
     @Description("Настройка браузера")
     public void setUp(@Optional("chrome") String browser, ITestContext iTestContext) {
         if (browser.equalsIgnoreCase("chrome")) {
