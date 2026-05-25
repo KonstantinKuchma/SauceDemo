@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import utils.PropertyReader;
 import utils.TestListener;
 
 import java.util.HashMap;
@@ -23,8 +24,8 @@ public class BaseTest {
     protected CartPage cartPage;//объявили страницу cartPage
     protected CheckoutPage checkoutPage;//объявили страницу checkoutPage
     protected ProductPage productPage;
-    protected String user = System.getProperty("user");//переменная для скрытия данных
-    protected String password = System.getProperty("password");//переменная для скрытия данных
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));//переменная для скрытия данных
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));//переменная для скрытия данных
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
