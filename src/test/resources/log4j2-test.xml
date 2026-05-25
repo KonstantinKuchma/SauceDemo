@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration xmlns="https://logging.apache.org/xml/ns"
+<Configuration status="OFF"
+               xmlns="https://logging.apache.org/xml/ns"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="
                    https://logging.apache.org/xml/ns
                    https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+
+    <Properties>
+        <Property name="DefaultPattern">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] - %msg%n
+        </Property>
+    </Properties>
+
     <Appenders>
-        <Console name="CONSOLE">
-            <PatternLayout pattern="%p - %m%n"/>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${DefaultPattern}"/>
         </Console>
-        <File name="MAIN" fileName="logs/main.log">
-            <JsonTemplateLayout/>
-        </File>
-        <File name="DEBUG_LOG" fileName="target/info.log">
-            <PatternLayout pattern="%d [%t] %p %c - %m%n"/>
+
+        <File name="fileAppender" fileName="target/tests.log">
+            <PatternLayout pattern="${DefaultPattern}"/>
         </File>
     </Appenders>
+
     <Loggers>
         <Root level="INFO">
-            <AppenderRef ref="CONSOLE" level="INFO"/>
-            <AppenderRef ref="MAIN"/>
+            <AppenderRef ref="consoleAppender" level="INFO"/>
+            <AppenderRef ref="fileAppender" level="INFO"/>
         </Root>
-        <Logger name="org.example" level="INFO">
-            <AppenderRef ref="DEBUG_LOG"/>
-        </Logger>
     </Loggers>
+
 </Configuration>
