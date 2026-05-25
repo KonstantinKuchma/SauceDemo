@@ -20,7 +20,7 @@ public class CheckoutTest extends BaseTest {
     public void checkoutWithPositiveCred() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()//вызываем метод, который открывает страницу
-                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .login(user, password)//авт c лог "standard_user" и пар "secret_sauce"
                 .openCart()//открыть корзину
                 .goToCheckout();//перейти в раздел checkout
         softAssert.assertEquals(checkoutPage.getTitle(), "Checkout: Your Information");//проверяем, что на странице есть такой залоговок
@@ -53,7 +53,7 @@ public class CheckoutTest extends BaseTest {
     public void negativeCheckout(String firstname, String lastname, String postal, String errorMessage) {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()//вызываем метод, который открывает страницу
-                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .login(user, password)//авт c лог "standard_user" и пар "secret_sauce"
                 .openCart()//открыть корзину
                 .goToCheckout();//перейти в раздел checkout
         softAssert.assertEquals(checkoutPage.getTitle(), "Checkout: Your Information");//проверяем, что на странице есть такой залоговок

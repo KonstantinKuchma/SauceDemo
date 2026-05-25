@@ -23,6 +23,8 @@ public class BaseTest {
     protected CartPage cartPage;//объявили страницу cartPage
     protected CheckoutPage checkoutPage;//объявили страницу checkoutPage
     protected ProductPage productPage;
+    protected String user = System.getProperty("user");//переменная для скрытия данных
+    protected String password = System.getProperty("password");//переменная для скрытия данных
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")

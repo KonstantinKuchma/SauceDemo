@@ -25,7 +25,7 @@ public class CartTest extends BaseTest {
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()//вызываем метод, который открывает страницу
-                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .login(user, password)//авт c лог "standard_user" и пар "secret_sauce"
                 .addToCart("Sauce Labs Backpack")
                 .openCart()//открыть корзину
                 .getProductName();//получаем и проверяем имя первого товара в корзине
@@ -47,7 +47,7 @@ public class CartTest extends BaseTest {
     public void checkRemoveCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()//вызываем метод, который открывает страницу
-                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .login(user, password)//авт c лог "standard_user" и пар "secret_sauce"
                 .addToCart("Sauce Labs Backpack")
                 .openCart()//открыть корзину
                 .getProductName();//получаем и проверяем имя первого товара в корзине

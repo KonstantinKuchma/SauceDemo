@@ -11,18 +11,25 @@
 
     <test name="Thread 1">
         <classes>
-            <class name="tests.LoginTest">
-                <methods>
-                    <include name="checkLoginWithPositiveCred"/>
-                </methods>
-            </class>
+            <class name="tests.LoginTest"/>
         </classes>
     </test>
 
     <test name="Thread 2">
         <classes>
-            <class name="tests.LocatorTest"/>
             <class name="tests.CartTest"/>
+        </classes>
+    </test>
+
+    <test name="Thread 3">
+        <classes>
+            <class name="tests.CheckoutTest"/>
+        </classes>
+    </test>
+
+    <test name="Thread 4">
+        <classes>
+            <class name="tests.ProductTest"/>
         </classes>
     </test>
 </suite>

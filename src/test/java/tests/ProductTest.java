@@ -18,7 +18,7 @@ public class ProductTest extends BaseTest {
     @Owner("Kuchma Konstantin")
     public void checkProductCart() {
         loginPage.open()//вызываем метод, который открывает страницу
-                .login("standard_user", "secret_sauce")//авт c лог "standard_user" и пар "secret_sauce"
+                .login(user, password)//авт c лог "standard_user" и пар "secret_sauce"
                 .clickProducts("Sauce Labs Backpack")
                 .getName();
         Assert.assertEquals(productPage.getName(), "Sauce Labs Backpack");
