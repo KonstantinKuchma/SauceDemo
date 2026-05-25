@@ -1,0 +1,7 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","E2E","0","Login in to SauceDemo","3","0","Nefative Login","0"
+"0","E2E","0","Check Cart","2","0","Cart","0"
+"0","E2E","0","Checkout With Negative Cred","3","0","Cred","0"
+"0","E2E","0","Login in to SauceDemo","1","0","Positive Login","0"
+"0","E2E","0","Checkout With Positive Cred","1","0","Cred","0"
+"0","E2E","0","Check product cart","1","0","Product cart","0"
